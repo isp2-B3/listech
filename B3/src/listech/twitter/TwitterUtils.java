@@ -34,6 +34,9 @@ public class TwitterUtils {
 		me = twitter.verifyCredentials();		//自分の詳細なユーザ情報の取得
 		followList = getFollowUsersList();		//フォローしているユーザ情報をリストで取得しフィールドにセット
 		followerList = getFollowerUsersList();	//フォローされているユーザ情報をリストで取得しフィールドにセット
+		list = twitter.getUserLists(null);
+		
+		
 
 		
 	}
@@ -52,6 +55,7 @@ public class TwitterUtils {
         ArrayList<User> followUserList = new ArrayList<User>();
        
         long page = 1L;
+        
         do {
             // フォローが多いユーザだと無反応で寂しい＆不安なので状況表示
             System.out.println(String.format("Follow:%dページ目取得中。。(%d <= %d)", page, GET_COUNT_PER_REQUEST * (page - 1),
@@ -61,7 +65,6 @@ public class TwitterUtils {
             // 取得したユーザをストックする
             for (User user : users) {
                 followUserList.add(user);
-                
             }
 
             // 次のページへのカーソル取得。ない場合は0のようだが、念のためループ条件はhasNextで見る
@@ -123,6 +126,14 @@ public class TwitterUtils {
 	
 	public int getFollowersCount(){
 		return me.getFollowersCount();
+	}
+	
+	public String getProfileImage(){
+		return me.getOriginalProfileImageURL();
+	}
+	
+	public String getDescription(){
+		return me.getDescription();
 	}
 	
 }

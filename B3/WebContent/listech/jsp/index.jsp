@@ -3,9 +3,7 @@
 <%@ page import="listech.twitter.*" %>
 <%@ page import="twitter4j.*" %>
 
-<!-- twitterインスタンスのセッションの収得 -->
 <% twitter4j.Twitter twitter = (twitter4j.Twitter) session.getAttribute("twitter"); %> 
-
 
 <html>
 <head>
@@ -13,29 +11,43 @@
     <title>Sign in with Twitter example</title>
 </head>
 <body>
-	
 	<% if(twitter == null){ %>
-    	<a href="signin"><img src="./images/Sign-in-with-Twitter-darker.png"/></a>
-    	
+    	<a href="signin"><img src="./listech/images/Sign-in-with-Twitter-darker.png"/></a>
 	<% } %>
 	
 	<% if(null != twitter){ %>
-		<% TwitterUtils t = new TwitterUtils(twitter);%>
+		<% TwitterUtils t = (TwitterUtils)session.getAttribute("t_utils");%>
+
+		<% if(t == null) {
+			session.setAttribute("t_utils",new TwitterUtils(twitter));
+			t = (TwitterUtils)session.getAttribute("t_utils");
+		}%>
 		
+		<h3>Follow(<% out.print(t.followList.size());%>)</h3>
+		<% for(int i = 0; i < t.followList.size(); i++){ %>
+			<img src="<% out.print(t.followList.get(i).getProfileImageURL());%>" 
+						width="64" 
+						height="64" 
+						title="<% out.print(t.followList.get(i).getName() +" / @" + t.followList.get(i).getScreenName());%>" 
+			/>
+		<% } %>
+		
+		<h3>Follower(<% out.print(t.followerList.size());%>)</h3>
+		<% for(int i = 0; i < t.followerList.size(); i++){ %>
+			<img src="<% out.print(t.followerList.get(i).getProfileImageURL());%>" 
+						width="64" 
+						height="64" 
+						title="<% out.print(t.followerList.get(i).getName() +" / @" + t.followerList.get(i).getScreenName());%>" 
+			/>
+		<% } %>
+		
+		<h3>アカウント情報</h3>
+		<img src="<% out.print(t.getProfileImage());%>" width="64" height="64" /><br>
 		<% out.println("アカウント名:" + t.getAccountName()); %><br>
 	    <% out.println("アカウントID:" + t.getAccountID()); %><br>
-	    <% out.println("フォロー:" + t.getFollowCount()); %><br>
-	    <% out.println("フォロワー:" + t.getFollowersCount()); %><br>
-	    <% out.println(t.followList.size());%><br>
-	    <% out.println(t.followerList.size());%><br>
-	    
-	    <form action="post" method="post">
-	        <textarea cols="80" rows="2" name="text"></textarea>
-	        <input type="submit" name="post" value="update"/>
-	    </form>
-	    
+	    <% out.println("プロフィール文:" + t.getDescription()); %><br>
 	    <a href="logout">logout</a>
-    <% } %>
+	<% }%>
 </body>
 </html>
 
