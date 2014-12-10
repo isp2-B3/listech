@@ -34,11 +34,7 @@ public class TwitterUtils {
 		me = twitter.verifyCredentials();		//自分の詳細なユーザ情報の取得
 		followList = getFollowUsersList();		//フォローしているユーザ情報をリストで取得しフィールドにセット
 		followerList = getFollowerUsersList();	//フォローされているユーザ情報をリストで取得しフィールドにセット
-		list = twitter.getUserLists(null);
-		
-		
-
-		
+		updateList();
 	}
 	/**
 	 * @category Getter
@@ -60,7 +56,7 @@ public class TwitterUtils {
             // フォローが多いユーザだと無反応で寂しい＆不安なので状況表示
             System.out.println(String.format("Follow:%dページ目取得中。。(%d <= %d)", page, GET_COUNT_PER_REQUEST * (page - 1),
                     GET_COUNT_PER_REQUEST * page++));
-            users = twitter.getFriendsList(getAccountID(), cursor,GET_COUNT_PER_REQUEST);
+            users = twitter.getFriendsList(getMyAccountID(), cursor,GET_COUNT_PER_REQUEST);
             
             // 取得したユーザをストックする
             for (User user : users) {
@@ -94,7 +90,7 @@ public class TwitterUtils {
             // フォローが多いユーザだと無反応で寂しい＆不安なので状況表示
             System.out.println(String.format("Follower:%dページ目取得中。。(%d <= %d)", page, GET_COUNT_PER_REQUEST * (page - 1),
                     GET_COUNT_PER_REQUEST * page++));
-            users = twitter.getFollowersList(getAccountID(), cursor,GET_COUNT_PER_REQUEST);
+            users = twitter.getFollowersList(getMyAccountID(), cursor,GET_COUNT_PER_REQUEST);
             
             
             // 取得したユーザをストックする
@@ -112,28 +108,55 @@ public class TwitterUtils {
 	
 	
 	/*自分のアカウント情報のゲッター(ユーザ名、IDなどなど)*/
-	public String getAccountName(){
+	public String getMyAccountName(){
 		return me.getName();
 	}
 	
-	public String getAccountID(){
+	public String getMyAccountID(){
 		return me.getScreenName();
 	}
 	
-	public int getFollowCount(){
+	public int getMyFollowCount(){
 		return me.getFriendsCount();
 	}
 	
-	public int getFollowersCount(){
+	public int getMyFollowersCount(){
 		return me.getFollowersCount();
 	}
 	
-	public String getProfileImage(){
+	public String getMyProfileImage(){
 		return me.getOriginalProfileImageURL();
 	}
 	
-	public String getDescription(){
+	public String getMyDescription(){
 		return me.getDescription();
 	}
+	
+	//新しい空のリストを作成(引数:リスト名, 公開かどうか？, リストの説明文)
+	public void createList(String name, boolean isPublic, String description) throws TwitterException{
+		twitter.createUserList(name, isPublic, description);
+	}
+	
+	//リストにユーザーを追加(引数:listのID, 追加するユーザーのアカウントIDのString配列)
+	public void addListMember(long listID, String[] accountIDs) throws TwitterException{
+		twitter.createUserListMembers(listID, accountIDs);
+	}
+	
+	//リストからユーザーを取り除く(引数:listのID, 取り除くユーザーのアカウントIDのString配列)
+	public void removeListMember(long listID, String[] accountIDs) throws TwitterException{
+		twitter.destroyUserListMembers(listID, accountIDs);
+	}
+	
+	//リストの削除(引数:削除するリストのID)
+	public void deleteList(long listID) throws TwitterException{
+		twitter.destroyUserList(listID);
+		
+	}
+	
+	//リスト情報の更新
+	public void updateList() throws TwitterException{
+		list = twitter.getUserLists(getMyAccountID());
+	}
+	
 	
 }

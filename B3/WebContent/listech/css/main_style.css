@@ -1,0 +1,116 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 23px;
+	
+}
+
+#header_frame {
+	height: 100px;  /* ヘッダーの高さ */
+	left: 0;
+	margin: 0;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	background-color: #FFDF6D;
+}
+
+#image_frame {
+}
+
+#myprof_frame {
+	padding: 0;
+	background-color: #FFF2C1;
+	height:100px;
+	right:0;
+	margin: 120px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	_overflow: auto;
+	padding:0;
+	position:fixed;
+	_position:absolute;
+	top:-120px;
+	width:250px;
+
+}
+
+#under_frame {
+	margin: 110px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	_overflow: auto;
+	padding: 0;
+}
+#left_frame {
+	padding: 0;
+	background-color: #FFE790;
+	height:100%;
+	left:0;
+	margin: 100px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	_overflow: auto;
+	padding:0;
+	position:fixed;
+	_position:absolute;
+	top:0;
+	width:160px;
+}
+
+body, .item {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 100%;
+	overflow: auto;
+}
+
+#center_frame {
+	height:100%;
+	margin: -10px 0 0 165px;
+	_overflow:auto;
+	padding:0;
+}
+
+#right_frame {
+	padding: 0;
+	background-color: #FFE790;
+	height:100%;
+	right:0;
+	margin: 90px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	_overflow: auto;
+	padding:0;
+	position:fixed;
+	_position:absolute;
+	top:0;
+	width:160px;
+}
+
+
+
+/* common setting */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 101;
+}
+.popup_inner {
+    padding: 20px;
+}
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 100;
+}
+
+/* individual setting */
+#popup1 {
+    width: 600px;
+}
+
