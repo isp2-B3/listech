@@ -19,7 +19,9 @@ public class TwitterUtils {
 	public ResponseList<UserList> list;		/*自分が作成したリスト*/
 	public ArrayList<User> followList;	/*フォローしているユーザのリスト*/
 	public  ArrayList<User> followerList;	/*フォローされているユーザのリスト*/
-	
+	public  ArrayList<User> relationshipList;	/*相互フォローのユーザのリスト*/
+	public ArrayList<ArrayList<User>> allListMember;	/*全リストのメンバーリスト(2次元配列)*/
+
 	
 	/**
 	 * @category Constructor
@@ -30,12 +32,47 @@ public class TwitterUtils {
 	 * 自分のユーザ情報、リスト、フォロー、フォロワーのデータを取得しセットする
 	 */
 	public TwitterUtils(Twitter twitter) throws TwitterException{
-		this.twitter = twitter;					//セッションで得られたTwitterオブジェクトを代入
-		me = twitter.verifyCredentials();		//自分の詳細なユーザ情報の取得
-		followList = getFollowUsersList();		//フォローしているユーザ情報をリストで取得しフィールドにセット
-		followerList = getFollowerUsersList();	//フォローされているユーザ情報をリストで取得しフィールドにセット
-		updateList();
+		this.twitter = twitter;							//セッションで得られたTwitterオブジェクトを代入
+		me = twitter.verifyCredentials();				//自分の詳細なユーザ情報の取得
+		followList = getFollowUsersList();				//フォローしているユーザ情報をリストで取得しフィールドにセット
+		followerList = getFollowerUsersList();			//フォローされているユーザ情報をリストで取得しフィールドにセット
+		relationshipList = getRelationshipUserList();	//相互フォローのユーザ情報をリストで取得しフィールドにセット
+		updateList();									//リスト情報の更新
+		allListMember = getAllListMember();				//全リストに対して登録されているユーザ情報を二次元配列にセット。
 	}
+	
+	/**
+	 * ユーザ情報取得関連
+	 */
+	
+	/**
+	 * @category Getter
+	 * @return ArrayList<User>
+	 * 
+	 * 
+	 * 相互フォローのユーザを取得しリストで返す
+	 */
+	public ArrayList<User> getRelationshipUserList() {
+		String i_screenName = null;
+		String j_screenName = null;
+		
+		ArrayList<User> relationshipList = new ArrayList<User>();
+		
+		for(int i = 0; i< followList.size(); i++){
+			i_screenName = followList.get(i).getScreenName();
+			for(int j = 0; j< followerList.size(); j++){
+				j_screenName = followerList.get(j).getScreenName();
+				
+				if(i_screenName.equalsIgnoreCase(j_screenName)){
+					relationshipList.add(followList.get(i));
+					break;
+				}
+			}
+		}
+		
+		return relationshipList ;
+	}
+	
 	/**
 	 * @category Getter
 	 * @return ArrayList<User>
@@ -106,8 +143,42 @@ public class TwitterUtils {
         
 	}
 	
+	//全リストのメンバーを取得し二次元配列で返す
+	public ArrayList<ArrayList<User>> getAllListMember() throws TwitterException{
+			
+			
+	        ArrayList<ArrayList<User>> allListMember = new ArrayList<ArrayList<User>>();
+	        
+	        for(int i = 0; i < list.size(); i++){
+	        	long cursor = -1L; 					// カーソル初期値。
+	            PagableResponseList<User> users; 	// 一時的にuserを格納するオブジェクト
+		        
+	            // フォローしているユーザを全てストックするオブジェクト
+		        ArrayList<User> listMember = new ArrayList<User>();
+		        do {
+		            users = twitter.getUserListMembers(list.get(i).getId(), cursor);
+		            
+		            
+		            // 取得したユーザをストックする
+		            for (User user : users) {
+		            	listMember.add(user);
+		            }
+		
+		            // 次のページへのカーソル取得。ない場合は0のようだが、念のためループ条件はhasNextで見る
+		            cursor = users.getNextCursor();
+		        } while (users.hasNext());
+		        allListMember.add(listMember);
+	        }
+	        return allListMember;
+	        
+		}
 	
-	/*自分のアカウント情報のゲッター(ユーザ名、IDなどなど)*/
+	
+	
+	/**
+	 * 自分のアカウント情報関連のゲッター(ユーザ名、IDなどなど)
+	 */
+	
 	public String getMyAccountName(){
 		return me.getName();
 	}
@@ -132,6 +203,12 @@ public class TwitterUtils {
 		return me.getDescription();
 	}
 	
+	
+	
+	/**
+	  リスト管理関連
+	 */
+	
 	//新しい空のリストを作成(引数:リスト名, 公開かどうか？, リストの説明文)
 	public void createList(String name, boolean isPublic, String description) throws TwitterException{
 		twitter.createUserList(name, isPublic, description);
@@ -147,12 +224,16 @@ public class TwitterUtils {
 		twitter.destroyUserListMembers(listID, accountIDs);
 	}
 	
+	//リストの編集
+	public void editList(long listID, String name, boolean isPublic, String description) throws TwitterException{
+		twitter.updateUserList(listID,name,isPublic, description);
+	}
+	
 	//リストの削除(引数:削除するリストのID)
 	public void deleteList(long listID) throws TwitterException{
 		twitter.destroyUserList(listID);
-		
 	}
-	
+		
 	//リスト情報の更新
 	public void updateList() throws TwitterException{
 		list = twitter.getUserLists(getMyAccountID());

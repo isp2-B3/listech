@@ -1,51 +1,39 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-size: 23px;
+	font-size: 18px;
 	
 }
 
+
 #header_frame {
-	height: 100px;  /* ヘッダーの高さ */
+	height: 50px;  /* ヘッダーの高さ */
 	left: 0;
 	margin: 0;
 	position: fixed;
-	_position: absolute;
 	top: 0;
 	width: 100%;
-	z-index: 999;
-	background-color: #FFDF6D;
+	background-color: #000000;
+	overflow-y : hidden;
 }
+
 
 #image_frame {
 }
 
-#myprof_frame {
-	padding: 0;
-	background-color: #FFF2C1;
-	height:100px;
-	right:0;
-	margin: 120px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
-	_overflow: auto;
-	padding:0;
-	position:fixed;
-	_position:absolute;
-	top:-120px;
-	width:250px;
-
-}
 
 #under_frame {
-	margin: 110px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
 	_overflow: auto;
 	padding: 0;
+	
 }
 #left_frame {
 	padding: 0;
-	background-color: #FFE790;
+	background-color: #e6e6fa;
 	height:100%;
 	left:0;
-	margin: 100px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
 	_overflow: auto;
 	padding:0;
 	position:fixed;
@@ -63,23 +51,9 @@ body, .item {
 
 #center_frame {
 	height:100%;
-	margin: -10px 0 0 165px;
+	margin: 50px 0 0 165px;
 	_overflow:auto;
 	padding:0;
-}
-
-#right_frame {
-	padding: 0;
-	background-color: #FFE790;
-	height:100%;
-	right:0;
-	margin: 90px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
-	_overflow: auto;
-	padding:0;
-	position:fixed;
-	_position:absolute;
-	top:0;
-	width:160px;
 }
 
 
@@ -113,4 +87,50 @@ body, .item {
 #popup1 {
     width: 600px;
 }
+
+
+/*pull down*/
+/*
+#menu li {
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 5px;
+  width: 200px;
+  height: 20px;
+  border: solid 1px #ccc;
+  font-weight: bold;
+}
+#menu li:hover {
+  color: #fff;
+  background: #333;
+}
+#menu li ul {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: -1px;
+  padding: 5px;
+  width: 200px;
+  background: #eee;
+  border: solid 1px #ccc;
+}
+#menu li ul li {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  border: none;
+}
+#menu li ul li a {
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+}
+#menu li ul li a:hover {
+  background: #999;
+  color: #fff;
+}*/
+
+
+
 
