@@ -1,0 +1,136 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+	
+}
+
+
+#header_frame {
+	height: 50px;  /* ヘッダーの高さ */
+	left: 0;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #000000;
+	overflow-y : hidden;
+}
+
+
+#image_frame {
+}
+
+
+#under_frame {
+	margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	_overflow: auto;
+	padding: 0;
+	
+}
+#left_frame {
+	padding: 0;
+	background-color: #e6e6fa;
+	height:100%;
+	left:0;
+	margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+	_overflow: auto;
+	padding:0;
+	position:fixed;
+	_position:absolute;
+	top:0;
+	width:160px;
+}
+
+body, .item {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 100%;
+	overflow: auto;
+}
+
+#center_frame {
+	height:100%;
+	margin: 50px 0 0 165px;
+	_overflow:auto;
+	padding:0;
+}
+
+
+
+/* common setting */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 101;
+}
+.popup_inner {
+    padding: 20px;
+}
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 100;
+}
+
+/* individual setting */
+#popup1 {
+    width: 600px;
+}
+
+
+/*pull down*/
+/*
+#menu li {
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 5px;
+  width: 200px;
+  height: 20px;
+  border: solid 1px #ccc;
+  font-weight: bold;
+}
+#menu li:hover {
+  color: #fff;
+  background: #333;
+}
+#menu li ul {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: -1px;
+  padding: 5px;
+  width: 200px;
+  background: #eee;
+  border: solid 1px #ccc;
+}
+#menu li ul li {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  border: none;
+}
+#menu li ul li a {
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+}
+#menu li ul li a:hover {
+  background: #999;
+  color: #fff;
+}*/
+
+
+
+
