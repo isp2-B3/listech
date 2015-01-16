@@ -2,44 +2,78 @@ body {
 	margin: 0;
 	padding: 0;
 	font-size: 18px;
-	
+
 }
 
 
+
+　#contents img.star{
+
+　}
+
+
+
+
+input[type=checkbox] {
+  display: none;
+}
+
+
+
+
 #header_frame {
-	height: 50px;  /* ヘッダーの高さ */
+	height: 50px;  /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆ */
 	left: 0;
 	margin: 0;
 	position: fixed;
 	top: 0;
 	width: 100%;
 	background-color: #000000;
-	overflow-y : hidden;
 }
 
-
-#image_frame {
+#header_left {
+	height: 50px;  /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆ */
+	left: 0;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	width: auto;
+	background-color: #000000;
 }
 
+#header_right {
+	height: 50px;  /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆ */
+	right: 0;
+	margin-left: auto;
+	position: fixed;
+	top: 0;
+	width: auto;
+	background-color: #000000;
+}
 
 #under_frame {
-	margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
-	_overflow: auto;
+	margin: 50px 0 0 0; /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆蛻�繧偵�槭�ｼ繧ｸ繝ｳ縺ｧ遨ｺ縺代※縺翫￥ */
+	overflow: visible;/*縺ｯ縺壹＠縺｡繧�縺�繧�*/
 	padding: 0;
-	
 }
+
 #left_frame {
 	padding: 0;
 	background-color: #e6e6fa;
 	height:100%;
 	left:0;
-	margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
-	_overflow: auto;
+	margin: 50px 0 0 0; /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆蛻�繧偵�槭�ｼ繧ｸ繝ｳ縺ｧ遨ｺ縺代※縺翫￥ */
 	padding:0;
 	position:fixed;
 	_position:absolute;
+	overflow: hidden;
 	top:0;
-	width:160px;
+	width:230px;
+}
+
+.dropdown-menu{
+	position: absolute;
+	z-index: 500;
 }
 
 body, .item {
@@ -51,8 +85,8 @@ body, .item {
 
 #center_frame {
 	height:100%;
-	margin: 50px 0 0 165px;
-	_overflow:auto;
+	margin: 50px 0 0 230px;
+	overflow: visible;/*hidden縺ｫ縺励■繧�縺�繧�*/
 	padding:0;
 }
 
@@ -84,7 +118,7 @@ body, .item {
 }
 
 /* individual setting */
-#popup1 {
+.popup1 {
     width: 600px;
 }
 

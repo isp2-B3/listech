@@ -5,7 +5,7 @@
     <reloadable>false</reloadable>
     <redirectLogger>false</redirectLogger>
     <updateXml>false</updateXml>
-    <warLocation>/Users/info/workspace/B08/B08.war</warLocation>
+    <warLocation>/Users/info/git/B08/B08/B08.war</warLocation>
     <extraInfo></extraInfo>
     <webPath></webPath>
 </tomcatProjectProperties>

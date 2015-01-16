@@ -25,6 +25,34 @@
         <servlet-class>listech.servlet.PostServlet
         </servlet-class>
     </servlet>
+
+
+
+    <servlet>
+        <servlet-name>adduser</servlet-name>
+        <servlet-class>listech.servlet.AddUserServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>removeuser</servlet-name>
+        <servlet-class>listech.servlet.RemoveUserServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>createlist</servlet-name>
+        <servlet-class>listech.servlet.CreateListServlet
+        </servlet-class>
+    </servlet>
+
+      <servlet>
+        <servlet-name>updatelist</servlet-name>
+        <servlet-class>listech.servlet.UpdateListServlet
+        </servlet-class>
+    </servlet>
+
+
     <servlet-mapping>
         <servlet-name>signin</servlet-name>
         <url-pattern>/signin</url-pattern>
@@ -41,7 +69,27 @@
         <servlet-name>post</servlet-name>
         <url-pattern>/post</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet-mapping>
+        <servlet-name>adduser</servlet-name>
+        <url-pattern>/adduser</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>removeuser</servlet-name>
+        <url-pattern>/removeuser</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>createlist</servlet-name>
+        <url-pattern>/createlist</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>updatelist</servlet-name>
+        <url-pattern>/updatelist</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <exception-type>twitter4j.TwitterException</exception-type>
         <location>listech/jsp/error.jsp</location>
