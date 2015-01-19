@@ -6,10 +6,11 @@ body {
 }
 
 
-
-　#contents img.star{
-
-　}
+/*icon check-box*/
+#contents img.star{
+	position: absolute;
+	margin:-48px 0 0 0;
+}
 
 
 
@@ -22,7 +23,7 @@ input[type=checkbox] {
 
 
 #header_frame {
-	height: 50px;  /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆ */
+	height: 50px;  /* 高さ固定 */
 	left: 0;
 	margin: 0;
 	position: fixed;
@@ -32,7 +33,7 @@ input[type=checkbox] {
 }
 
 #header_left {
-	height: 50px;  /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆ */
+	height: 50px;  /* 高さ固定 */
 	left: 0;
 	margin: 0;
 	position: fixed;
@@ -42,7 +43,7 @@ input[type=checkbox] {
 }
 
 #header_right {
-	height: 50px;  /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆ */
+	height: 50px;  /* 高さ固定 */
 	right: 0;
 	margin-left: auto;
 	position: fixed;
@@ -52,8 +53,8 @@ input[type=checkbox] {
 }
 
 #under_frame {
-	margin: 50px 0 0 0; /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆蛻�繧偵�槭�ｼ繧ｸ繝ｳ縺ｧ遨ｺ縺代※縺翫￥ */
-	overflow: visible;/*縺ｯ縺壹＠縺｡繧�縺�繧�*/
+	margin: 50px 0 0 0; /* header部分ずらす */
+	overflow: visible;/*これは消しちゃだめ*/
 	padding: 0;
 }
 
@@ -62,14 +63,16 @@ input[type=checkbox] {
 	background-color: #e6e6fa;
 	height:100%;
 	left:0;
-	margin: 50px 0 0 0; /* 繝倥ャ繝�繝ｼ縺ｮ鬮倥＆蛻�繧偵�槭�ｼ繧ｸ繝ｳ縺ｧ遨ｺ縺代※縺翫￥ */
+	margin: 50px 0 0 0; /* header部分ずらす */
 	padding:0;
 	position:fixed;
-	_position:absolute;
+	_position:relative;
 	overflow: hidden;
 	top:0;
 	width:230px;
+
 }
+
 
 .dropdown-menu{
 	position: absolute;
@@ -86,8 +89,9 @@ body, .item {
 #center_frame {
 	height:100%;
 	margin: 50px 0 0 230px;
-	overflow: visible;/*hidden縺ｫ縺励■繧�縺�繧�*/
+	overflow: visible;/*hiddenにしちゃだめ*/
 	padding:0;
+	z-index:-100;
 }
 
 

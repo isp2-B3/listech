@@ -52,6 +52,12 @@
         </servlet-class>
     </servlet>
 
+      <servlet>
+        <servlet-name>deletelist</servlet-name>
+        <servlet-class>listech.servlet.DeleteListServlet
+        </servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>signin</servlet-name>
@@ -88,6 +94,11 @@
     <servlet-mapping>
         <servlet-name>updatelist</servlet-name>
         <url-pattern>/updatelist</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>deletelist</servlet-name>
+        <url-pattern>/deletelist</url-pattern>
     </servlet-mapping>
 
     <error-page>

@@ -21,6 +21,9 @@ public class TwitterUtils {
 	public  ArrayList<User> followerList;	/*フォローされているユーザのリスト*/
 	public  ArrayList<User> relationshipList;	/*相互フォローのユーザのリスト*/
 	public ArrayList<ArrayList<User>> allListMember;	/*全リストのメンバーリスト(2次元配列)*/
+
+	public ArrayList<User> searchList;/* 検索したのユーザのリスト */
+	public String state;
 	public int clickListID;
 
 	/**
@@ -40,6 +43,7 @@ public class TwitterUtils {
 		updateList();									//リスト情報の更新
 		getAllListMember();				//全リストに対して登録されているユーザ情報を二次元配列にセット。
 
+		state = "1";
 	}
 
 	/**
@@ -256,6 +260,64 @@ public class TwitterUtils {
 		clickListID = i;
 	}
 
+	// 検索
+		public void search(String key) {
+			searchList = new ArrayList<User>();
+			char A = key.charAt(0);
+
+			if (state.equals("1")) {// followの検索
+				for (int i = 0; i <= followList.size(); i++) {
+					if (A == '@') {
+						String id = key.substring(1);
+						if (followList.get(i).getScreenName().equals(id)) {// ユーザID
+							searchList.add(followList.get(i));
+						}
+					} else {
+						if (followList.get(i).getName().equals(key)) {// ユーザ名
+							searchList.add(followList.get(i));
+						}
+					}
+				}
+			} else if (state.equals("2")) {// followerの検索
+				for (int i = 0; i <= followerList.size(); i++) {
+					if (A == '@') {
+						String id = key.substring(1);
+						if (followerList.get(i).getScreenName().equals(id)) {// ユーザID
+							searchList.add(followerList.get(i));
+						}
+					} else {
+						if (followerList.get(i).getName().equals(key)) {// ユーザ名
+							searchList.add(followerList.get(i));
+						}
+					}
+				}
+			} else if (state.equals("3")) {// relationshipの検索
+				for (int i = 0; i <= relationshipList.size(); i++) {
+					if (A == '@') {
+						String id = key.substring(1);
+						if (followerList.get(i).getScreenName().equals(id)) {// ユーザID
+							searchList.add(relationshipList.get(i));
+						}
+					} else {
+						if (followerList.get(i).getName().equals(key)) {// ユーザ名
+							searchList.add(relationshipList.get(i));
+						}
+					}
+				}
+			}
+		}
+
+		public void setStatefollow() {// 検索(follow)
+			state = "1";
+		}
+
+		public void setStatefollower() {// 検索(follower)
+			state = "2";
+		}
+
+		public void setStaterelationship() {// 検索(relationship)
+			state = "3";
+		}
 
 
 }

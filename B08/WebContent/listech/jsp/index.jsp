@@ -42,12 +42,18 @@
 		}
 	</script>
 	<script src="https://code.jquery.com/jquery.js"></script>
-   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-	<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<script type="text/javascript">
+	 function chkdisp( obj,id ) {
+	  if( obj.checked ){
+	   document.getElementById(id).style.display = "block";
+	  }
+	  else {
+	   document.getElementById(id).style.display = "none";
+	  }
+	 }
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -77,8 +83,8 @@
 			session.setAttribute("t_utils",new TwitterUtils(twitter));
 			t = (TwitterUtils)session.getAttribute("t_utils");
 		}%>
+
 		<link rel="stylesheet" type="text/css" href="./listech/css/main_style.css"/>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
 		<!-- リストの作成 -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -100,40 +106,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		        <button type="submit" class="btn btn-primary%>">Create</button>
-		      </div>
-		      </form>
-
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-
-		<!-- リストの編集 -->
-		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		  <div class="modal-dialog">
-		    <div class="modal-content" style="width:740px; margin-left: -70px;">
-		      <div class="modal-header">
-		        <h4 class="modal-title" id="myModalLabel">Edit a list</h4>
-		      </div>
-		      <form method= "POST" action="updatelist">
-		      <div class="modal-body">
-
-	        		<p>List Name</p>
-	      			<input type="text" name="listname" class="textBox" size="30"
-	      			value = <%=t.list.get(t.getClickListID()).getName()%>
-	      			>
-	      			<p>Description</p>
-	      			<textarea name="description" cols="50" rows="2"><%=t.list.get(t.getClickListID()).getDescription()%></textarea>
-					<p>Privacy</p>
-					<input type="radio" name="privacy" value="1" <%if(t.list.get(t.getClickListID()).isPublic()){ %>checked<%} %>>Public
-					<input type="radio" name="privacy" value="0" <%if(!t.list.get(t.getClickListID()).isPublic()){ %>checked <%} %>>Private
-					<input type= "hidden" name=listindex value = <%=t.getClickListID()%>>
-
-					<!--  input type="submit">リストを削除-->
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		        <button type="submit" class="btn btn-primary%>">update</button>
+		        <button type="submit" class="btn btn-primary">Create</button>
 		      </div>
 		      </form>
 
@@ -168,8 +141,8 @@
 
 					<!-- ドロップダウンメニュー -->
 				    <ul class="dropdown-menu">
-				      <li><a href="logout" data-toggle="tab">Logout</a></li>
-				      <li><a href="#message2" data-toggle="tab">Cash Clear</a></li>
+				      <li><a href="logout" >Logout</a></li>
+				      <!--  <li><a href="#message2">Cash Clear</a></li> -->
 				    </ul>
 
 				  </li>
@@ -237,10 +210,77 @@
 						<a id="list" href="#list<%=i%>" onclick="ChangeTab('list<%= i%>'); return false;">
 						<% out.print(t.list.get(i).getName());%>
 						</a>
-						<!-- 新規リストの作成(モーダルボタンの設定) -->
-						<a data-toggle="modal" href="#myModal2" class="btn btn-primary" onclick = "<%t.setClickListID(i); %>">
-						<img src="./listech/images/pen.png" alt="追加" height="15">
+
+						<!-- リストの編集(モーダルボタンの設定) -->
+						<a data-toggle="modal" href="#edit_<%=i %>" class="btn btn-primary" >
+							<img src="./listech/images/pen.png" alt="編集" height="15">
 						</a>
+
+						<!-- リストの編集 -->
+						<div class="modal fade" id="edit_<%=i %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+						  <div class="modal-dialog">
+						    <div class="modal-content" style="width:740px; margin-left: -70px;">
+						      <div class="modal-header">
+						        <h4 class="modal-title" id="myModalLabel">Edit a list</h4>
+						      </div>
+						      <form method= "POST" action="updatelist">
+							      <div class="modal-body">
+						        		<p>List Name</p>
+						      			<input type="text" name="listname" class="textBox" size="30"
+						      			value = <%=t.list.get(i).getName()%>
+						      			>
+						      			<p>Description</p>
+						      			<textarea name="description" cols="50" rows="2"><%=t.list.get(i).getDescription()%></textarea>
+										<p>Privacy</p>
+										<input type="radio" name="privacy" value="1" <%if(t.list.get(i).isPublic()){ %>checked<%} %>>Public
+										<input type="radio" name="privacy" value="0" <%if(!t.list.get(i).isPublic()){ %>checked <%} %>>Private
+										<input type= "hidden" name=listindex value = <%=i%>>
+
+							      </div>
+
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							        <button type="submit" class="btn btn-primary%>">update</button>
+							      </div>
+						      </form>
+
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+
+
+
+
+						<!-- リストの削除(モーダルボタンの設定) -->
+						<a data-toggle="modal" href="#delete_<%=i %>" class="btn btn-primary" >
+							<img src="./listech/images/pen.png" alt="削除" height="15">
+						</a>
+
+						<!-- リストの削除 -->
+						<div class="modal fade" id="delete_<%=i %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+						  <div class="modal-dialog">
+						    <div class="modal-content" style="width:740px; margin-left: -70px;">
+						      <div class="modal-header">
+						        <h4 class="modal-title" id="myModalLabel">Delete a List</h4>
+						      </div>
+						      <form method= "POST" action="deletelist">
+							      <div class="modal-body">
+						        		<p>リスト「<%out.print(t.list.get(i).getName()); %>」を削除しますか？</p>
+						      			<input type= "hidden" name=listindex value = <%=i%>>
+							      </div>
+
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Disagree</button>
+							        <button type="submit" class="btn btn-primary%>">Agree</button>
+							      </div>
+						      </form>
+
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+
+
+
 						<br>
 					<% }%>
 				</div>
@@ -251,21 +291,23 @@
 
 				<!-- フォロー、フォロワー、相互共に選択出来るようまとめてくくる -->
 				<form method = "POST" action="adduser">
-
-<script type="text/javascript">
- function chkdisp( obj,id ) {
-  if( obj.checked ){
-   document.getElementById(id).style.display = "block";
-  }
-  else {
-   document.getElementById(id).style.display = "none";
-  }
- }</script>
 					<!-- フォローしている -->
 					<div id = "follow">
-							<section>
+						<section>
+							<SELECT name="listname">
+							<% for(int j = 0; j < t.list.size(); j++) {%>
+								<option value= <%out.print(t.list.get(j).getId()); %>>
+								<%out.print(t.list.get(j).getName()); %>
+								</option>
+
+							<%}%>
+							</SELECT>
+							<input type="submit" value="リストに追加" >
+							<br>
+
 							<% for(int i = 0; i < t.followList.size(); i++){ %>
-								<input type = "checkbox" id = "following_<%out.print(i);%>" name = "test" value = "<%= t.followList.get(i).getScreenName()%>"
+								<input type = "checkbox" id = "following_<%out.print(i);%>"
+								name = "test" value = "<%= t.followList.get(i).getScreenName()%>"
 								onclick="chkdisp(this,'f_<%= i%>')" >
 
 								  <label id = "contents"for = "following_<%out.print(i);%>">
@@ -275,43 +317,61 @@
 								<img id="f_<%= i%>" class="star" style="display:none;" src="./listech/images/check_2.png" width="48" height="48">
 
 								</label>
-
-
 							<% } %>
-							</section>
-						<input type="submit" value="リストに追加" -->
-
+						</section>
 					</div>
 
 					<!-- フォローされている -->
 					<div id = "follower">
+						<section>
+							<SELECT name="listname">
+							<% for(int j = 0; j < t.list.size(); j++) {%>
+								<option value= <%out.print(t.list.get(j).getId()); %>>
+								<%out.print(t.list.get(j).getName()); %>
+								</option>
+							<%}%>
+							</SELECT>
+							<input type="submit" value="リストに追加" >
+							<br>
 
-							<section>
 							<% for(int i = 0; i < t.followerList.size(); i++){ %>
-
-								<input type = "checkbox" id = "follower_<%out.print(i);%>" name = "test" value = "<%= t.followerList.get(i).getScreenName()%>">
-								<label for = "follower_<%out.print(i);%>">
+								<input type = "checkbox" id = "follower_<%out.print(i);%>" name = "test"
+								value = "<%= t.followerList.get(i).getScreenName()%>"
+								onclick="chkdisp(this,'fw_<%= i%>')" >
+								<label id = "contents" for = "follower_<%out.print(i);%>">
 								<img src = "<% out.print(t.followerList.get(i).getProfileImageURL());%>" width="48" height="48"
 									title = "<% out.print(t.followerList.get(i).getName() +" / @" + t.followerList.get(i).getScreenName());%>" >
+								<img id="fw_<%= i%>" class="star" style="display:none;" src="./listech/images/check_2.png" width="48" height="48">
 								</label>
-
 							<% } %>
-							</section>
-						<input type="submit" value="リストに追加">
+						</section>
 					</div>
 
 					<!-- 相互フォロー -->
 					<div id = "relationship">
 						<section>
-						<% for(int i = 0; i < t.relationshipList.size(); i++){ %>
-							<input type = "checkbox" id = "relationship_<%out.print(i);%>" name = "test" value = "<%= t.relationshipList.get(i).getScreenName()%>">
-							<label for = "relationship_<%out.print(i);%>">
-							<img src = "<% out.print(t.relationshipList.get(i).getProfileImageURL());%>" width="48" height="48"
-								title = "<% out.print(t.relationshipList.get(i).getName() +" / @" + t.relationshipList.get(i).getScreenName());%>" >
-							</label>
-						<% } %>
+							<SELECT name="listname">
+							<% for(int j = 0; j < t.list.size(); j++) {%>
+								<option value= <%out.print(t.list.get(j).getId()); %>>
+								<%out.print(t.list.get(j).getName()); %>
+								</option>
+							<%}%>
+							</SELECT>
+							<input type="submit" value="リストに追加" >
+							<br>
+
+							<% for(int i = 0; i < t.relationshipList.size(); i++){ %>
+								<input type = "checkbox" id = "relationship_<%out.print(i);%>" name = "test"
+								value = "<%= t.relationshipList.get(i).getScreenName()%>"
+								onclick="chkdisp(this,'r_<%= i%>')" >
+								<label id = "contents" for = "relationship_<%out.print(i);%>">
+								<img src = "<% out.print(t.relationshipList.get(i).getProfileImageURL());%>" width="48" height="48"
+									title = "<% out.print(t.relationshipList.get(i).getName() +" / @" + t.relationshipList.get(i).getScreenName());%>" >
+
+								<img id="r_<%= i%>" class="star" style="display:none;" src="./listech/images/check_2.png" width="48" height="48">
+								</label>
+							<% } %>
 						</section>
-						<input type="submit" value="リストに追加">
 					</div>
 
 				</form>
@@ -319,24 +379,28 @@
 				<!-- リストに登録されているユーザー -->
 				<% for(int a = 0; a < t.allListMember.size(); a++){ %>
 					<div id = "list<%= a %>">
-					<form method = "POST" action="removeuser">
-						<section>
-						<% for(int i = 0; i < t.allListMember.get(a).size(); i++){ %>
+						<form method = "POST" action="removeuser">
+							<input type="submit" value="リストから削除">
+							<br>
 
-							<input type = "checkbox" id = "list<%out.print(a + "_"+ i );%>" name = "list<%=a %>"
-									value = <% out.print(t.allListMember.get(a).get(i).getScreenName());%>>
+							<section>
+								<% for(int i = 0; i < t.allListMember.get(a).size(); i++){ %>
 
-							<label for = "list<%out.print(a + "_"+ i );%>">
-							<img src = "<% out.print(t.allListMember.get(a).get(i).getProfileImageURL()); %>" width="48" height="48"
-								title = "<% out.print(t.allListMember.get(a).get(i).getName() +" / @" + t.allListMember.get(a).get(i).getScreenName());%>" >
-							</label>
-						<% } %>
-						</section>
+									<input type = "checkbox" id = "list<%out.print(a + "_"+ i );%>" name = "list<%=a %>"
+											value = <% out.print(t.allListMember.get(a).get(i).getScreenName());%>
+											onclick="chkdisp(this,'l_<%= i%>_<%= a%>')" >
 
-						<input type="hidden" name = "currentlist" value="list<%=a %>">
-						<input type="hidden" name = "listID" value="<%=t.list.get(a).getId() %>">
-						<input type="submit" value="リストから削除">
-					</form>
+									<label id = "contents" for = "list<%out.print(a + "_"+ i );%>">
+									<img src = "<% out.print(t.allListMember.get(a).get(i).getProfileImageURL()); %>" width="48" height="48"
+										title = "<% out.print(t.allListMember.get(a).get(i).getName() +" / @" + t.allListMember.get(a).get(i).getScreenName());%>" >
+									<img id="l_<%= i%>_<%= a%>" class="star" style="display:none;" src="./listech/images/check_2.png" width="48" height="48">
+
+									</label>
+								<% } %>
+							</section>
+								<input type="hidden" name = "currentlist" value="list<%=a %>">
+								<input type="hidden" name = "listID" value="<%=t.list.get(a).getId() %>">
+						</form>
 					</div>
 				<% } %>
 

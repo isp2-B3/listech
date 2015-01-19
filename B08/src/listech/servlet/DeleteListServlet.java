@@ -13,31 +13,24 @@ import twitter4j.TwitterException;
 
 @SuppressWarnings("serial")
 //ユーザをリストに追加。
-public class AddUserServlet extends HttpServlet {
+public class DeleteListServlet extends HttpServlet {
   public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
 	  //セッション管理しているTwitterUtilsクラスを取得
 	  TwitterUtils t_utils = (TwitterUtils) request.getSession().getAttribute("t_utils");
 
-	  //formでチェックされたユーザーIDをString[]で取得
-	  String[] accountIDs = request.getParameterValues("test");
+	  int listindex = Integer.valueOf(request.getParameter("listindex"));
 
-	  String listid = request.getParameter("listname");
-	  long id = Long.valueOf(listid);
 	  //管理クラスからリスト追加のメソッドを呼び出す。
-
 	  try {
-		t_utils.addListMember(id, accountIDs);
+		t_utils.deleteList(t_utils.list.get(listindex).getId());
 	  } catch (TwitterException e) {
 		e.printStackTrace();
-	  }
+  }
 
-	  System.out.println("Add user by " + t_utils.list.get(0).getName());
+	  System.out.println("Create list by ");
 
-	  for(int i = 0; i < accountIDs.length; i++){
-		  System.out.println(accountIDs[i]);
-	  }
 
 	  //リストの更新
 	  try {
