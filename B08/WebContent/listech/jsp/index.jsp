@@ -120,14 +120,14 @@
 
 	        		<p>List Name</p>
 	      			<input type="text" name="listname" class="textBox" size="30"
-	      			value = <%=t.list.get(clicklistid).getName()%>
+	      			value = <%=t.list.get(t.getClickListID()).getName()%>
 	      			>
 	      			<p>Description</p>
-	      			<textarea name="description" cols="50" rows="2"><%=t.list.get(clicklistid).getDescription()%></textarea>
+	      			<textarea name="description" cols="50" rows="2"><%=t.list.get(t.getClickListID()).getDescription()%></textarea>
 					<p>Privacy</p>
-					<input type="radio" name="privacy" value="1" <%if(t.list.get(clicklistid).isPublic()){ %>checked<%} %>>Public
-					<input type="radio" name="privacy" value="0" <%if(!t.list.get(clicklistid).isPublic()){ %>checked <%} %>>Private
-					<input type= "hidden" name=listindex value = <%=clicklistid %>>
+					<input type="radio" name="privacy" value="1" <%if(t.list.get(t.getClickListID()).isPublic()){ %>checked<%} %>>Public
+					<input type="radio" name="privacy" value="0" <%if(!t.list.get(t.getClickListID()).isPublic()){ %>checked <%} %>>Private
+					<input type= "hidden" name=listindex value = <%=t.getClickListID()%>>
 
 					<!--  input type="submit">リストを削除-->
 		      </div>
@@ -238,7 +238,7 @@
 						<% out.print(t.list.get(i).getName());%>
 						</a>
 						<!-- 新規リストの作成(モーダルボタンの設定) -->
-						<a data-toggle="modal" href="#myModal2" class="btn btn-primary" onclick = "<%clicklistid = i; %>">
+						<a data-toggle="modal" href="#myModal2" class="btn btn-primary" onclick = "<%t.setClickListID(i); %>">
 						<img src="./listech/images/pen.png" alt="追加" height="15">
 						</a>
 						<br>

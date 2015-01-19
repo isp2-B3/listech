@@ -21,7 +21,7 @@ public class TwitterUtils {
 	public  ArrayList<User> followerList;	/*フォローされているユーザのリスト*/
 	public  ArrayList<User> relationshipList;	/*相互フォローのユーザのリスト*/
 	public ArrayList<ArrayList<User>> allListMember;	/*全リストのメンバーリスト(2次元配列)*/
-
+	public int clickListID;
 
 	/**
 	 * @category Constructor
@@ -39,6 +39,7 @@ public class TwitterUtils {
 		getRelationshipUserList();	//相互フォローのユーザ情報をリストで取得しフィールドにセット
 		updateList();									//リスト情報の更新
 		getAllListMember();				//全リストに対して登録されているユーザ情報を二次元配列にセット。
+
 	}
 
 	/**
@@ -246,6 +247,15 @@ public class TwitterUtils {
 
 		}
 	}
+
+	public int getClickListID(){
+		return clickListID;
+	}
+
+	public void setClickListID(int i){
+		clickListID = i;
+	}
+
 
 
 }
