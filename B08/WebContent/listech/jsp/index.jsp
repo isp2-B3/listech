@@ -152,23 +152,24 @@
 
 			<!-- 左側ナビゲーションメニュー -->
 			<div id="left_frame"class="item">
-
-				<!-- search -->
-				<div id = "search" >
+				<br>
+				<!--
+				<div id = "search" align="center">
 					<form method="get" action="#" class="search">
-							<input type="text" name="example" class="textBox">
-							<a id="search" href=""><img src="./listech/images/search.png" alt="検索" height="15"></a>
+							<input type="text" size="20" name="example" class="textBox">
+							<a id="search_button" href=""><img src="./listech/images/search.png" alt="検索" height="15"></a>
 					</form>
 				</div>
-				<br>
+				<br> -->
 
 				<!-- Friendship -->
-				<div id = "friendship" >
+
+				<div id = "friendship" class="btn-group">
 					<font size=5 color="#6D72B2">Friendship</font>
 
 					<!-- フォローしているユーザー -->
 					<div id = "fs_follow" >
-						<a id="followings" href="#follow" onclick="ChangeTab('follow'); return false;">
+						<a id="followings" href="#follow" class="btn btn-default btn-group-justified" onclick="ChangeTab('follow'); return false;">
 							<img src="./listech/images/yazi_migi.png" alt="following" height="15">
 							<font color="#3E478F">Followings(<% out.print(t.followList.size());%>)</font>
 						</a>
@@ -176,7 +177,7 @@
 
 					<!-- フォローされているユーザー -->
 					<div id = "fs_follower" >
-						<a id="followers" href="#follower" onclick="ChangeTab('follower'); return false;">
+						<a id="followers" href="#follower" class="btn btn-default btn-group-justified" onclick="ChangeTab('follower'); return false;">
 							<img src="./listech/images/yazi_hidari.png" alt="followers" height="15">
 							<font color="#3E478F">Followers(<% out.print(t.followerList.size());%>)</font>
 						</a>
@@ -184,32 +185,33 @@
 
 					<!-- 相互フォローのユーザー -->
 					<div id = "fs_relationships" >
-						<a id="relationships" href="#relationships" onclick="ChangeTab('relationship'); return false;">
+						<a id="relationships" href="#relationships" class="btn btn-default btn-group-justified" onclick="ChangeTab('relationship'); return false;">
 							<img src="./listech/images/each.png" alt="relationships" height="15">
 							<font color="#3E478F">Relationships(<% out.print(t.relationshipList.size());%>)</font>
 						</a>
 					</div>
 				</div>
 				<br>
-
+				<br>
 				<!--リスト-->
 				<div id = "lists">
 					<font size=5 color="#6D72B2">Lists(<% out.print(t.list.size());%>)</font>
 
 					<!-- 新規リストの作成(モーダルボタンの設定) -->
-					<a data-toggle="modal" href="#myModal" class="btn btn-primary">
+					<a data-toggle="modal" href="#myModal" class="btn btn-primary" >
 						<img src="./listech/images/plus.png" alt="追加" height="15">
 					</a>
-					<br>
+
 
 					<!-- リスト一覧の表示（ボタンを押したらそのリストに登録されているユーザー一覧が表示されるよう変更しやした） -->
 					<%for(int i = 0 ; i < t.list.size(); i++ ){ %>
-						<a id="list" href="#list<%=i%>" onclick="ChangeTab('list<%= i%>'); return false;">
+					<div class="btn-group-justified">
+						<a id="list" href="#list<%=i%>" class="btn btn-default" onclick="ChangeTab('list<%= i%>'); return false;">
 						<% out.print(t.list.get(i).getName());%>
 						</a>
 
 						<!-- リストの編集(モーダルボタンの設定) -->
-						<a data-toggle="modal" href="#edit_<%=i %>" class="btn btn-primary" >
+						<a id="list_button1" data-toggle="modal" href="#edit_<%=i %>" class="btn btn-primary" onclick = "<%clicklistid = i; %>">
 							<img src="./listech/images/pen.png" alt="編集" height="15">
 						</a>
 
@@ -249,8 +251,8 @@
 
 
 						<!-- リストの削除(モーダルボタンの設定) -->
-						<a data-toggle="modal" href="#delete_<%=i %>" class="btn btn-primary" >
-							<img src="./listech/images/pen.png" alt="削除" height="15">
+						<a id="list_button2" data-toggle="modal" class="btn btn-default" href="#delete_<%=i %>" class="btn btn-primary" >
+							<img src="./listech/images/delete.png" alt="削除" height="15">
 						</a>
 
 						<!-- リストの削除 -->
@@ -279,9 +281,12 @@
 
 
 						<br>
+					</div>
 					<% }%>
 				</div>
+
 			</div>
+
 
 			<!-- アイコンを表示する場所 -->
 			<div id="center_frame"class="item">

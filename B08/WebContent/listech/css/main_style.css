@@ -2,28 +2,19 @@ body {
 	margin: 0;
 	padding: 0;
 	font-size: 18px;
-
 }
 
-
-/*icon check-box*/
 #contents img.star{
 	position: absolute;
 	margin:-48px 0 0 0;
 }
 
-
-
-
 input[type=checkbox] {
   display: none;
 }
 
-
-
-
 #header_frame {
-	height: 50px;  /* 高さ固定 */
+	height: 50px;   /* 高さ固定 */
 	left: 0;
 	margin: 0;
 	position: fixed;
@@ -33,13 +24,17 @@ input[type=checkbox] {
 }
 
 #header_left {
-	height: 50px;  /* 高さ固定 */
+	height: 52px;   /* 高さ固定 */
 	left: 0;
 	margin: 0;
 	position: fixed;
 	top: 0;
 	width: auto;
-	background-color: #000000;
+	background-color: #000000; /*背景色*/
+	border-width: medium; /*枠の大きさ*/
+	border-color: #000000; /*枠の色*/
+	border-style: outset; /*枠の形*/
+	border-radius: 10px; /*枠の太さ*/
 }
 
 #header_right {
@@ -53,26 +48,84 @@ input[type=checkbox] {
 }
 
 #under_frame {
-	margin: 50px 0 0 0; /* header部分ずらす */
+	margin: 52px 0 0 0;  /* header部分ずらす */
 	overflow: visible;/*これは消しちゃだめ*/
 	padding: 0;
 }
 
 #left_frame {
 	padding: 0;
-	background-color: #e6e6fa;
 	height:100%;
 	left:0;
-	margin: 50px 0 0 0; /* header部分ずらす */
+	margin: 52px 0 0 0; /* header部分ずらす */
 	padding:0;
 	position:fixed;
-	_position:relative;
-	overflow: hidden;
+	_position:absolute;
+	overflow: auto;
 	top:0;
-	width:230px;
-
+	width:30%;
+	background-color: #81ADF0;
+	
 }
 
+#center_frame {
+	height:100%;
+	margin: 0 0 0 30%;
+	overflow: visible;/*hiddenにしちゃだめ*/
+	padding:0;
+	width:70%;
+}
+
+#search{
+	background-color:#BB88FF;
+	border-width: medium;
+	border-color: #996FD1;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#search_button{
+	background-color:#AB6AB2;
+	border-width: medium;
+	border-color: #A969B0;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#friendship{
+	background-color:#BB88FF;
+	border-width: medium;
+	border-color: #996FD1;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#lists{
+	background-color:#BB88FF;
+	border-width: medium;
+	border-color: #996FD1;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#list{
+	
+	width:70%;
+}
+
+/*編集ボタン*/
+#list_button1{
+	width:15%;
+	background-color:#27ae60;
+	
+}
+
+/*削除ボタン*/
+#list_button2{
+	width:15%;
+	background-color:#e67e22;
+	
+}
 
 .dropdown-menu{
 	position: absolute;
@@ -85,47 +138,6 @@ body, .item {
 	height: 100%;
 	overflow: auto;
 }
-
-#center_frame {
-	height:100%;
-	margin: 50px 0 0 230px;
-	overflow: visible;/*hiddenにしちゃだめ*/
-	padding:0;
-	z-index:-100;
-}
-
-
-
-/* common setting */
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: #fff;
-    overflow: hidden;
-    z-index: 101;
-}
-.popup_inner {
-    padding: 20px;
-}
-#overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.7;
-    z-index: 100;
-}
-
-/* individual setting */
-.popup1 {
-    width: 600px;
-}
-
 
 /*pull down*/
 /*
