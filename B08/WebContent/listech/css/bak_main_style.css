@@ -1,0 +1,193 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+}
+
+#contents img.star{
+	position: absolute;
+	margin:-48px 0 0 0;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+#header_frame {
+	height: 50px;   /* 高さ固定 */
+	left: 0;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #000000;
+}
+
+#header_left {
+	height: 50px;   /* 高さ固定 */
+	left: 0;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	width: auto;
+	background-color: #000000; /*背景色*/
+	border-width: medium; /*枠の大きさ*/
+	border-color: #000000; /*枠の色*/
+	border-style: outset; /*枠の形*/
+	border-radius: 10px; /*枠の太さ*/
+}
+
+#header_right {
+	height: 50px;  /* 高さ固定 */
+	right: 0;
+	margin-left: auto;
+	position: fixed;
+	top: 0;
+	width: auto;
+	background-color: #81BABA;
+	border-width: medium;
+	border-color: #81BABA;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#under_frame {
+	margin: 50px 0 0 0;  /* header部分ずらす */
+	overflow: visible;/*これは消しちゃだめ*/
+	padding: 0;
+}
+
+#left_frame {
+	padding: 0;
+	height:100%;
+	left:0;
+	margin: 50px 0 0 0; /* header部分ずらす */
+	padding:0;
+	position:fixed;
+	_position:absolute;
+	overflow: hidden;
+	top:0;
+	width:20%;
+	background-color: #EE7EA0;
+	border-width: medium;
+	border-color: #EE7EA0;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#center_frame {
+	height:100%;
+	margin: 0 0 0 20%;
+	overflow: visible;/*hiddenにしちゃだめ*/
+	padding:0;
+	width:80%;
+	background-color: #ACF454;
+	border-width: medium;
+	border-color: #ACF454;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#search{
+	background-color:#6063D7;
+	border-width: medium;
+	border-color: #6063D7;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#search_button{
+	background-color:#FF825A;
+	border-width: medium;
+	border-color: #FF825A;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#friendship{
+	background-color:#ffb400;
+	border-width: medium;
+	border-color: #ffb400;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#lists{
+	background-color:#ffd778;
+	border-width: medium;
+	border-color: #ffd778;
+	border-style: outset;
+	border-radius: 10px;
+}
+
+#list{
+	width:70%;
+}
+
+/*編集ボタン*/
+#list_button1{
+	width:15%;
+}
+
+/*削除ボタン*/
+#list_button2{
+	width:15%;
+}
+
+.dropdown-menu{
+	position: absolute;
+	z-index: 500;
+}
+
+body, .item {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 100%;
+	overflow: auto;
+}
+
+/*pull down*/
+/*
+#menu li {
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 5px;
+  width: 200px;
+  height: 20px;
+  border: solid 1px #ccc;
+  font-weight: bold;
+}
+#menu li:hover {
+  color: #fff;
+  background: #333;
+}
+#menu li ul {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: -1px;
+  padding: 5px;
+  width: 200px;
+  background: #eee;
+  border: solid 1px #ccc;
+}
+#menu li ul li {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  border: none;
+}
+#menu li ul li a {
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+}
+#menu li ul li a:hover {
+  background: #999;
+  color: #fff;
+}*/
+
+
+
+

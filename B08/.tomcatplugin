@@ -2,10 +2,10 @@
 <tomcatProjectProperties>
     <rootDir>/</rootDir>
     <exportSource>false</exportSource>
-    <reloadable>false</reloadable>
+    <reloadable>true</reloadable>
     <redirectLogger>false</redirectLogger>
-    <updateXml>false</updateXml>
-    <warLocation>/Users/info/git/B08/B08/B08.war</warLocation>
+    <updateXml>true</updateXml>
+    <warLocation></warLocation>
     <extraInfo></extraInfo>
     <webPath></webPath>
 </tomcatProjectProperties>

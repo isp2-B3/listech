@@ -4,8 +4,9 @@
 <%@ page import="twitter4j.*" %>
 
 <% twitter4j.Twitter twitter = (twitter4j.Twitter) session.getAttribute("twitter"); %>
-<% TwitterUtils t = (TwitterUtils)session.getAttribute("t_utils");%>
-<% int clicklistid = 0;%>
+<% TwitterUtils t = (TwitterUtils)session.getAttribute("t_utils"); %>
+<% int clicklistid = 0; %>
+
 <html>
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
@@ -14,10 +15,6 @@
     <title>Sign in with Twitter example</title>
 
 	<!-- CSSのリンク -->
-
-
-
-
 
 	<!-- Javascript -->
 	<!--画面を切り替えずに要素を表示するためのjavascript -->
