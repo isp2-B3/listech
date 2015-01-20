@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import listech.twitter.TwitterUtils;
 import twitter4j.TwitterException;
 
-@SuppressWarnings("serial")
 //ユーザをリストに追加。
 public class AddUserServlet extends HttpServlet {
-  public void doPost (HttpServletRequest request, HttpServletResponse response)
+	private static final long serialVersionUID = 1657390011452788111L;
+
+	public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
 	  //セッション管理しているTwitterUtilsクラスを取得
