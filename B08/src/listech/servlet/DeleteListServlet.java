@@ -28,8 +28,8 @@ public class DeleteListServlet extends HttpServlet {
 	  } catch (TwitterException e) {
 		e.printStackTrace();
   }
-
-	  System.out.println("Create list by ");
+//
+//	  System.out.println("Create list by ");
 
 
 	  //リストの更新

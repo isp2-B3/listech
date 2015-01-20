@@ -39,11 +39,11 @@ public class CreateListServlet extends HttpServlet {
 	  } catch (TwitterException e) {
 		e.printStackTrace();
 	  }
-
-	  System.out.println("Create list by ");
-	  System.out.println("ListName:" + listname);
-	  System.out.println("Description:" + description);
-	  System.out.println("isPublic:" + ispublic);
+//
+//	  System.out.println("Create list by ");
+//	  System.out.println("ListName:" + listname);
+//	  System.out.println("Description:" + description);
+//	  System.out.println("isPublic:" + ispublic);
 
 	  //リストの更新
 	  try {

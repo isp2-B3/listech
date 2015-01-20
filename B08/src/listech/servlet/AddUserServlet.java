@@ -33,12 +33,12 @@ public class AddUserServlet extends HttpServlet {
 	  } catch (TwitterException e) {
 		e.printStackTrace();
 	  }
-
-	  System.out.println("Add user by " + t_utils.list.get(0).getName());
-
-	  for(int i = 0; i < accountIDs.length; i++){
-		  System.out.println(accountIDs[i]);
-	  }
+//
+//	  System.out.println("Add user by " + t_utils.list.get(0).getName());
+//
+//	  for(int i = 0; i < accountIDs.length; i++){
+//		  System.out.println(accountIDs[i]);
+//	  }
 
 	  //リストの更新
 	  try {

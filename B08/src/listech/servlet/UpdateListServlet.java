@@ -42,10 +42,10 @@ public class UpdateListServlet extends HttpServlet {
 		e.printStackTrace();
 	  }
 
-	  System.out.println("Edit list by ");
-	  System.out.println("ListName:" + listname);
-	  System.out.println("Description:" + description);
-	  System.out.println("isPublic:" + ispublic);
+//	  System.out.println("Edit list by ");
+//	  System.out.println("ListName:" + listname);
+//	  System.out.println("Description:" + description);
+//	  System.out.println("isPublic:" + ispublic);
 
 	  //リストの更新
 	  try {

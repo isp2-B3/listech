@@ -46,9 +46,9 @@ public class SigninServlet extends HttpServlet {
         Twitter twitter = new TwitterFactory().getInstance();
 
         request.getSession().setAttribute("twitter", twitter);
-       
+
         try {
-            StringBuffer callbackURL = request.getRequestURL();
+            StringBuffer callbackURL = new StringBuffer("http://ecl.info.kindai.ac.jp/14/isp2/warup/servlet/B08/");
             int index = callbackURL.lastIndexOf("/");
             callbackURL.replace(index, callbackURL.length(), "").append("/callback");
 
@@ -59,7 +59,7 @@ public class SigninServlet extends HttpServlet {
         } catch (TwitterException e) {
             throw new ServletException(e);
         }
-        
+
 
     }
 }

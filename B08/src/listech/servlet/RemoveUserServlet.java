@@ -28,13 +28,13 @@ public class RemoveUserServlet extends HttpServlet {
 	  long id = Long.parseLong(listID);
 
 
-	  System.out.println(currentList);
-
-
-	  System.out.println("Remove user by " + currentList);
-	  for(int i = 0; i < accountIDs.length; i++){
-		  System.out.println(accountIDs[i]);
-	  }
+//	  System.out.println(currentList);
+//
+//
+//	  System.out.println("Remove user by " + currentList);
+//	  for(int i = 0; i < accountIDs.length; i++){
+//		  System.out.println(accountIDs[i]);
+//	  }
 
 	  //管理クラスからリスト追加のメソッドを呼び出す。
 	  try {
