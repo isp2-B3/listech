@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import listech.twitter.TwitterUtils;
 import twitter4j.TwitterException;
 
-@SuppressWarnings("serial")
 //ユーザをリストから除外。
 public class RemoveUserServlet extends HttpServlet {
+
+
+	  private static final long serialVersionUID = 1657390011452788111L;
   public void doPost (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
 	  //セッション管理しているTwitterUtilsクラスを取得
 	  TwitterUtils t_utils = (TwitterUtils) request.getSession().getAttribute("t_utils");
 	  String listID = (String)request.getParameter("listID");
